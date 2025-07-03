@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazing Braids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      color: #333;
+      background: url('https://i.imgur.com/odjCFsI.png') center/cover no-repeat;
+      overflow-x: hidden;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      width: 100%;
+      font-family: 'Playfair Display', serif;
+      background-size: cover;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 12vw;
+      margin: 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      text-align: center;
+    }
+
+    main {
+      padding: 10px;
+      border-radius: 50px;
+      margin: 100px auto;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: relative;
+      top: 0;
+      width: 100%;
+      background: white;
+      color: #999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 10;
+      padding: 0 20px;
+      font-family: 'Roboto', sans-serif;
+      flex-wrap: wrap;
+    }
+
+
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: auto;
+    }
+    nav ul.show {
+    display: flex;
+  }
+    nav li {
+      position: relative; 
+    }
+    nav a {
+      color: #999;
+      text-decoration: none;
+      padding: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+    nav ul li a {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+    text-align: left;
+  }
+
+
+    
+    nav a.book {
+      background-color: #007bff;
+      border-radius: 4px;
+      margin-left: 15px;
+      color: white;
+      text-align: center;
+      padding: 10px 20px;
+    }
+    .book-btn {
+  display: block;
+  margin: 20px auto;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+    nav li ul {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background-color: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 1000;
+      border-radius: 4px;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    nav li ul li.separator {
+      border-bottom: 5px solid #000;
+      margin: 5px 0;
+    }
+    nav li ul li a {
+      padding: 12px 20px;
+      color: #666;
+      white-space: nowrap;
+      display: block;
+    }
+    nav li ul li a::before {
+      margin-right: 5px;
+    }
+    nav li ul li:nth-child(1) a::before { content: '❓ '; }
+    nav li ul li:nth-child(2) a::before { content: '📜 '; }
+    nav li ul li:nth-child(4) a::before { content: '💳 '; }
+    nav li ul li:nth-child(5) a::before { content: '✍️ '; }
+    nav li ul li:nth-child(6) a::before { content: '💁 '; }
+    nav li ul li:nth-child(7) a::before { content: '⭐ '; }
+
+  nav ul li a:hover {
+    background: #f0f0f0;
+  }
+     .faq-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      cursor: pointer;
+      padding: 15px 20px;
+      background: #f7f7f7;
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 15px 20px;
+      font-size: 16px;
+      line-height: 1.6;
+      background: #fff;
+      color: #444;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    /* Service Packages */
+    .package-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 50px 0;
+    }
+    .content-box {
+  background: white;
+  padding: 40px 60px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .content-box {
+    padding: 20px 20px;
+  }
+}
+
+/* Hamburger bars */
+.menu-toggle span {
+  background: #222;
+  height: 3px;
+  width: 30px;
+  margin: 6px 0;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 15px;
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+@media (max-width: 768px) {
+  .dropdown-menu li {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .dropdown-menu li:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Dropdown menu items on mobile */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li a {
+    font-size: 18px;
+    padding: 15px 20px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  nav ul li a:hover {
+    background: #f0f0f0;
+  }
+
+  nav a.book {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+}
+
+
+    .package {
+      flex: 1 1 250px;
+      max-width: 300px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      color: white;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .bronze { background-color: #CD7F32; color: black;}
+    .silver { background-color: #C0C0C0; color: black;}
+    .gold { background-color: #FFD700; color: black; }
+    .platinum { background-color: #E5E4E2; color: black; }
+    .diamond { background-color: #b9f2ff; color: black; }
+    .senior { background-color: #c4aead; color: black;}
+    .addon { background-color: white; color: black; }
+@media (max-width: 768px) {
+  #about,
+  #mission,
+  #pricing,
+  #stylists,
+  #contact,
+  #core-values {
+    padding: 20px 10px !important;
+  }
+
+  #about div,
+  #mission div,
+  #pricing div,
+  #stylists div,
+  #contact div,
+  #core-values div {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    border-radius: 10px !important;
+
+  }
+}
+
+
+    @media (max-width: 768px) {
+  .section {
+    padding: 40px 20px;
+  }
+
+  .about-section div {
+    padding: 25px 20px;
+    margin: 15px 0;
+    box-shadow: none;
+    border-radius: 6px;
+  }
+
+  #about h2 {
+    font-size: 36px;
+  }
+
+  #about p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+    @media (max-width: 768px) {
+  #contact {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  #contact > div {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+#about h2 {
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.2;
+  color: #222;
+}
+ 
+  #mission p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+  #pricing p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+  #stylists p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+  #contact p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+  #core-values p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+#about p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+@media (max-width: 768px) {
+  #about h2 {
+    font-size: 40px !important;
+  }
+
+  #about div {
+    padding: 20px 25px !important;
+    margin: 15px 0 !important;
+  }
+}
+
+    @media (max-width: 768px) {
+      .package-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    /* Responsive Layout */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 999;
+        text-align: center;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      nav ul li a {
+        font-size: 18px;
+        padding: 15px 0;
+        width: 100%;
+      }
+      nav a.book {
+        display: block;
+        margin: 10px auto;
+}
+
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const navMenu = document.querySelector('nav ul');
+      navMenu.classList.toggle('show');
+    }
+  </script>
+      <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const items = document.querySelectorAll(".faq-question");
+      items.forEach(item => {
+        item.addEventListener("click", () => {
+          const parent = item.parentElement;
+          parent.classList.toggle("active");
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul>
+      <li><a href="lisa.html#about">About</a></li>
+      <li><a href="lisa.html#pricing">Pricing</a></li>
+      <li><a href="lisa.html#mission">Our Mission</a></li>
+      <li><a href="lisaP.html">Portfolio</a></li>
+      <li class="dropdown">
+         <a href="#resources" class="dropdown-toggle" onclick="event.preventDefault(); this.nextElementSibling.classList.toggle('show');">Resources ▼</a>
+        <ul>
+          <li><a href="lisaFAQ.html">FAQ</a></li>
+          <li><a href="#resources">Certifications</a></li>
+          <li class="separator"></li>
+          <li><a href="#resources">Make A Payment</a></li>
+          <li><a href="#resources">Leave a Review</a></li>
+          <li><a href="#resources">Tip Your Stylist</a></li>
+          <li><a href="#resources">Google Reviews</a></li>
+        </ul>
+      </li>
+      <li><a href="lisa.html#contact">Contact</a></li>
+      <li><a href="https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start" class="book">Book Appointment</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Amazing Braids</h1>
+   
+  </header>
+
+  <main>
+ <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<section id="about" style="background-color: #B0E0E6; padding: 60px; border-radius: 8px; margin-bottom: 50px; font-family: 'Open Sans', sans-serif; text-align: center;">
+  <h2 style="font-family: 'Playfair Display', serif; font-size: 65px;">About Amazing Braids</h2>
+  <div class="content-box">
+    <p>Amazing Braids is more than just a braiding studio—it’s a community-centered haven where every client feels like family. Founded on the belief that beauty is for everyone, Amazing Braids goes beyond the chair to reach into the heart of the community. From offering creative braid styles and protective hair care to providing a listening ear and a warm smile, the studio’s mission is to empower individuals through hair artistry and human connection. Special emphasis is placed on serving the elderly population, ensuring that seniors receive the same level of care and attention, whether they need simple cornrows for comfort or intricate styles for special occasions.</p>
+  </div>
+  <div class="content-box">
+    <p>At Amazing Braids, the focus is on people first. The team is dedicated to meeting each client where they are—celebrating their unique stories, styles, and traditions. By hosting community events, volunteering at senior centers, and offering affordable packages for all ages, Amazing Braids bridges generations and brings the beauty of braiding to everyone. Every style is a testament to the studio’s commitment to inclusivity, cultural pride, and the belief that hair care is a form of self-love and community strength.</p>
+  </div>
+</section>
+  
+    
+<section id="mission" style="background-color: #F5F5DC; padding: 60px; border-radius: 8px; margin-bottom: 50px; font-family: 'Open Sans', sans-serif; text-align: center;">
+  <h2 style="font-family: 'Playfair Display', serif; font-size: 65px;">Our Mission</h2>
+  <div class="content-box">   
+    <p>Our mission is to celebrate and enhance the natural beauty of every client. We strive to offer top-tier braiding services in a warm, welcoming environment while fostering empowerment, self-expression, and cultural pride through every strand we touch.</p>
+    </div>
+  <div class="content-box">
+    <p>We are committed to making every individual feel seen, valued, and cared for. From our meticulous attention to hair health to our nurturing client relationships, Amazing Braids promotes beauty that goes beyond the surface—building confidence, community, and cultural connection with every appointment.</p>
+  </div>
+</section>
+
+<section id="core-values" style="background-color: #E6E6FA; padding: 60px; border-radius: 8px; margin-bottom: 50px; font-family: 'Open Sans', sans-serif; text-align: center;">
+  <h2 style="font-family: 'Playfair Display', serif; font-size: 65px;">Core Values & Principles</h2>
+  <div class="content-box">
+    <p><strong>Integrity:</strong> We hold ourselves to the highest standards in our craft and our interactions. Honesty, transparency, and doing right by our clients is at the core of every braid and every conversation.</p>
+    <p><strong>Community:</strong> We are rooted in and serve our local neighborhoods, with an emphasis on inclusivity and service to all. Our shop is a place where cultures are honored, traditions are shared, and everyone is welcome regardless of background or age.</p>
+    <p><strong>Creativity:</strong> Every braid is a work of art, reflecting each client’s unique story and style. We embrace innovation and individuality in every design, using our hands and hearts to craft something both personal and powerful for each client.</p>
+    <p><strong>Compassion:</strong> We care deeply about every person who walks through our doors—young, old, and everyone in between. We listen, we empathize, and we uplift through attentive service, ensuring that each experience is rooted in kindness and care.</p>
+    </div>
+   <div class="content-box">
+     <p>These core values are more than just guiding principles—they are the heartbeat of Amazing Braids. Each one represents a promise to our clients and community to remain grounded in what truly matters: ethical service, cultural celebration, personalized artistry, and heartfelt connection. Our clients don’t just leave with beautiful hair—they leave with an experience rooted in mutual respect and genuine care.</p>
+    </div>
+  <div class="content-box">
+    <p>Together, these values create a culture where excellence flourishes, individuality is celebrated, and every braid is a reflection of our purpose. We strive to embody these principles in every appointment, outreach effort, and interaction—because when you sit in our chair, you're part of something bigger.</p>
+  </div>
+    
+</section>
+<section id="pricing" style="background-color: #f0f9f0; padding: 60px; border-radius: 8px; margin-bottom: 50px; font-family: 'Open Sans', sans-serif;">
+  <h2 style="font-family: 'Playfair Display', serif; text-align: center; font-size: 65px;">Service Packages</h2>
+  <div class="package-container">
+    <div class="package bronze">
+      <h3>🥉 Bronze Package – $60</h3>
+      <p>✅ 2–4 Feed-Ins<br>✅ Cornrows (basic)<br>✅ Braid Downs (prep for wigs/weaves)<br>✅ Shampoo + Dry Oil Scalp<br>❌ Freestyle Braids<br>❌ Twists (basic and medium-sized)<br>❌ Box Braids<br>❌ Knotless Braids<br>❌ Kinky Twists<br>❌ Updos (special occasions)<br>❌ Protective Styles (layered or detailed)<br>❌ Re-Twist Locs<br>❌ Tribal Braids (simple or detailed)<br>❌ Juicy Twists<br>❌ Kinky & Juicy Combo<br>❌ Crochet Styles<br>❌ Sew-Ins<br>❌ Braid Accessories Add-On<br>❌ Edge Styling<br>❌ Braid Touch-Ups</p>
+<button class="book-btn" onclick="window.location.href='https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start'">Book Appointment</button>
+    </div>
+    <div class="package silver">
+      <h3>🥈 Silver Package – $100</h3>
+      <p>✅ 2–4 Feed-Ins<br>✅ Cornrows (basic)<br>✅ Braid Downs (prep for wigs/weaves)<br>✅ Shampoo + Dry Oil Scalp<br>✅ Freestyle Braids (simple)<br>✅ Twists (basic and medium-sized)<br>✅ Box Braids (short–medium)<br>✅ Kinky Twists<br>✅ Protective Styles (basic)<br>✅ Re-Twist Locs<br>❌ Knotless Braids<br>❌ Updos (special occasions)<br>❌ Tribal Braids (simple or detailed)<br>❌ Juicy Twists<br>❌ Kinky & Juicy Combo<br>❌ Crochet Styles<br>❌ Sew-Ins<br>❌ Braid Accessories Add-On<br>❌ Edge Styling<br>❌ Braid Touch-Ups</p>
+<button class="book-btn" onclick="window.location.href='https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start'">Book Appointment</button>
+    </div>
+    <div class="package gold">
+      <h3>🥇 Gold Package – $160</h3>
+      <p>✅ 2–4 Feed-Ins<br>✅ Cornrows (basic)<br>✅ Braid Downs (prep for wigs/weaves)<br>✅ Shampoo + Dry Oil Scalp<br>✅ Freestyle Braids (simple or detailed)<br>✅ Twists (basic and medium-sized)<br>✅ Box Braids (short–medium)<br>✅ Kinky Twists<br>✅ Protective Styles (layered and detailed)<br>✅ Re-Twist Locs<br>✅ Knotless Braids (short–medium)<br>✅ Updos (special occasions)<br>✅ Tribal Braids (simple designs)<br>✅ Juicy Twists<br>✅ Kinky & Juicy Combo<br>✅ Crochet Styles (short–medium)<br>❌ Sew-Ins<br>❌ Braid Accessories Add-On<br>❌ Edge Styling<br>❌ Braid Touch-Ups</p>
+<button class="book-btn" onclick="window.location.href='https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start'">Book Appointment</button>
+    </div>
+    <div class="package platinum">
+      <h3>✨ Platinum Package – $220</h3>
+      <p>✅ 2–4 Feed-Ins<br>✅ Cornrows (basic)<br>✅ Braid Downs (prep for wigs/weaves)<br>✅ Shampoo + Dry Oil Scalp<br>✅ Freestyle Braids (detailed)<br>✅ Twists (basic and medium-sized)<br>✅ Box Braids (short–medium)<br>✅ Kinky Twists<br>✅ Protective Styles (layered and detailed)<br>✅ Re-Twist Locs<br>✅ Knotless Braids (short–medium)<br>✅ Updos (special occasions)<br>✅ Tribal Braids (detailed)<br>✅ Juicy Twists<br>✅ Kinky & Juicy Combo<br>✅ Crochet Styles (full head)<br>✅ Sew-Ins (partial, minimal leave-out)<br>✅ Braid Accessories Add-On<br>✅ Edge Styling<br>✅ Braid Touch-Ups</p>
+<button class="book-btn" onclick="window.location.href='https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start'">Book Appointment</button>
+    </div>
+    <div class="package diamond">
+      <h3>💎 Diamond Package – $320</h3>
+      <p>✅ 2–4 Feed-Ins<br>✅ Cornrows (basic)<br>✅ Braid Downs (prep for wigs/weaves)<br>✅ Shampoo + Dry Oil Scalp<br>✅ Freestyle Braids (custom, detailed)<br>✅ Twists (basic, medium, and custom)<br>✅ Box Braids (short–medium)<br>✅ Kinky Twists<br>✅ Protective Styles (layered and detailed)<br>✅ Re-Twist Locs<br>✅ Knotless Braids (short–long)<br>✅ Updos (formal and special occasions)<br>✅ Tribal Braids (detailed, culturally inspired)<br>✅ Juicy Twists<br>✅ Kinky & Juicy Combo<br>✅ Crochet Styles (full head)<br>✅ Sew-Ins (full or partial, with closure/frontal)<br>✅ Braid Accessories Add-On (premium)<br>✅ Edge Styling<br>✅ Braid Touch-Ups</p>
+<button class="book-btn" onclick="window.location.href='https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start'">Book Appointment</button>
+    </div>
+    <div class="package senior">
+      <h3>65+ Senior Package – $65</h3>
+      <p>✅ Simple Styles<br>✅ Wash and Dry<br>✅ Scalp Massage<br>✅ Shampoo + Dry Oil Scalp<br>✅ Freestyle Braids <br>✅ Twists (basic)<br>✅ Braid Touch-Ups </p>
+<button class="book-btn" onclick="window.location.href='https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start'">Book Appointment</button>
+    </div>
+        <div class="package addon">
+      <h3><span style="color: green;">➕</span> Glorious Add-on's</h3>
+      <p>✅ placeholder<br>✅ placeholder<br>✅ plcaeholder<br>✅ placeholder<br>✅ placeholder<br>✅ placeholder<br>✅ placeholder</p>
+<button class="book-btn" onclick="window.location.href='https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start'">Book Appointment</button>
+    </div>
+  </div>
+</section>
+
+  <section id="stylists" style="background-color: #D2B48C; padding: 60px; border-radius: 8px; margin-bottom: 50px; font-family: 'Open Sans', sans-serif; text-align: center; font-size: 65px;">
+      <h2 style="font-family: 'Playfair Display', serif;">Our Stylists</h2>
+      <p></p>
+    <h3 style="text-align: center; font-size: 50px; color: #333;">Lisa</h3>
+    <img src="https://i.imgur.com/j1GQhlG.jpeg" alt="Our Stylists" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 8px;">
+<button class="book-btn" onclick="window.location.href='https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start'">Book Lisa</button>
+    <p></p>
+    <p></p>
+    
+    </section>
+
+<section id="contact" style="background-color: #2d3142; color: white; padding: 60px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; border-radius: 8px; flex-direction: row; align-items: flex-start; text-align: left;">
+
+  <!-- Left: Contact Info -->
+  <div style="flex: 1 1 300px;">
+    <img src="https://i.imgur.com/NCrpxNj.png" alt="Amazing Braids Logo" style="max-width: 150px; margin-bottom: 20px;">
+    <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">Amazing Braids</h3>
+    <p><strong>Address:</strong> 123 Braid Lane, Charlotte, NC</p>
+    <p><strong>Phone:</strong> (704) 555-0123</p>
+    <p><strong>Email:</strong> contact@amazingbraids.com</p>
+    <div style="margin-top: 20px;">
+      <a href="#"><img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt="Instagram"/></a>
+      <a href="#"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" alt="Facebook"/></a>
+      <a href="#"><img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube"/></a>
+      <a href="#"><img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn"/></a>
+    </div>
+  </div>
+
+  <!-- Middle: Quick Links -->
+  <div style="flex: 1 1 300px;">
+    <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">Quick Links</h3>
+    <ul style="list-style: none; padding: 0; line-height: 2;">
+      <li><a href="#about" style="color: white; text-decoration: none;">About Us</a></li>
+      <li><a href="#pricing" style="color: white; text-decoration: none;">Pricing Packages</a></li>
+      <li><a href="lisaP.html" style="color: white; text-decoration: none;">Client Portfolio</a></li>
+      <li><a href="lisaFAQ.html" style="color: white; text-decoration: none;">Frequent Questions</a></li>
+      <li><a href=" https://app.squareup.com/appointments/book/2vu7mhdpt8xdvw/L6G1H5SWGZPQZ/start" style="color: white; text-decoration: none;">Book Now</a></li>
+     
+      
+      
+    </ul>
+  </div>
+
+  <!-- Right: Business Hours -->
+  <div style="flex: 1 1 300px;">
+    <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">Business Hours</h3>
+    <p><strong>Monday:</strong> 6:00PM - 10:00PM</p>
+    <p><strong>Tuesday:</strong> Closed</p>
+    <p><strong>Wednesday - Friday:</strong> 6:00PM - 10:00PM</p>
+    <p><strong>Saturday:</strong> 2:00PM - 6:00PM</p>
+    <p><strong>Sunday:</strong> 2:00PM - 5:00PM</p>
+    <div style="margin-top: 20px;">
+      <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" alt="MasterCard"/>
+      <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa"/>
+      <img src="https://img.icons8.com/color/48/000000/amex.png" alt="Amex"/>
+      <img src="https://img.icons8.com/color/48/000000/discover.png" alt="Discover"/>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Amazing Braids. All rights reserved. </p>
+  </footer>
+</body>
+</html> 
